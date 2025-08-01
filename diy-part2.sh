@@ -8,6 +8,32 @@
 #
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
+
+function merge_package() {
+    # 参数1是分支名,参数2是库地址,参数3是所有文件下载到指定路径。
+    # 同一个仓库下载多个文件夹直接在后面跟文件名或路径，空格分开。
+    if [[ $# -lt 3 ]]; then
+        echo "Syntax error: [$#] [$*]" >&2
+        return 1
+    fi
+    trap 'rm -rf "$tmpdir"' EXIT
+    branch="$1" curl="$2" target_dir="$3" && shift 3
+    rootdir="$PWD"
+    localdir="$target_dir"
+    [ -d "$localdir" ] || mkdir -p "$localdir"
+    tmpdir="$(mktemp -d)" || exit 1
+    git clone -b "$branch" --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
+    cd "$tmpdir"
+    git sparse-checkout init --cone
+    git sparse-checkout set "$@"
+    # 使用循环逐个移动文件夹
+    for folder in "$@"; do
+        rm -rf  "$rootdir/$localdir/${folder##*/}"
+        mv -f   "$folder" "$rootdir/$localdir"
+    done
+    cd "$rootdir"
+}
+
 #
 # 解决冲突（适用于kenzok8插件源码）
 # rm -rf feeds/luci/applications/luci-app-mosdns
@@ -21,6 +47,9 @@ sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_genera
 
 # 设置密码为空
 # sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings
+
+merge_package main https://github.com/wvvwcom/openwrt-package-frpc    feeds/packages/net        net/frp
+merge_package main https://github.com/wvvwcom/openwrt-package-frpc    feeds/luci/applications   applications/luci-app-frpc
 
 # 安装新主题 luci-theme-bootstrap-mod
 # git clone https://github.com/leshanydy2022/luci-theme-bootstrap-mod.git package/lean/luci-theme-bootstrap-mod
