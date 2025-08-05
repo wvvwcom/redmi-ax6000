@@ -17,7 +17,7 @@
 # echo 'src-git alist https://github.com/sbwml/luci-app-alist' >>feeds.conf.default
 # echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 # sed -i '1i src-git helloworld https://github.com/fw876/helloworld.git;master' feeds.conf.default
-echo 'src-git helloworld https://github.com/fw876/helloworld.git;master' >> feeds.conf.default
+# echo 'src-git helloworld https://github.com/fw876/helloworld.git;master' >> feeds.conf.default
 
 
 
