@@ -50,10 +50,11 @@ sed -i 's/192.168.6.1/192.168.10.1/g' package/base-files/files/bin/config_genera
 # sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings
 
 # 直接拷贝到package目录，xray编译要求高版本golang
-merge_package master https://github.com/coolsnowwolf/packages         package/feeds/packages    lang/golang/golang
+merge_package master https://github.com/coolsnowwolf/packages         feeds/packages/lang       lang/golang
 merge_package main https://github.com/wvvwcom/openwrt-package-frpc    package/feeds/packages    net/frp
 merge_package main https://github.com/wvvwcom/openwrt-package-frpc    package/feeds/luci        applications/luci-app-frpc
 
+# 非替换的包，需要直接拷贝到package目录，不然无法安装
 merge_package main https://github.com/Lienol/openwrt-package          package/feeds/luci   luci-app-timecontrol
 merge_package main https://github.com/Lienol/openwrt-package          package/feeds/luci   luci-app-socat
 
