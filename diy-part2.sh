@@ -44,16 +44,16 @@ function merge_package() {
 
 # 设置主路由静态IP
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.6.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 
 # 设置密码为空
 # sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings
 
-# 更新golang版本，修改为主线版本，alist xray 编译要求21.x
-merge_package master https://github.com/coolsnowwolf/packages         feeds/packages/lang       lang/golang
-merge_package main https://github.com/wvvwcom/openwrt-package-frpc    feeds/packages/net        net/frp
-merge_package main https://github.com/wvvwcom/openwrt-package-frpc    feeds/luci/applications   applications/luci-app-frpc
+# 直接拷贝到package目录，xray编译要求高版本golang
+merge_package master https://github.com/coolsnowwolf/packages         package/feeds/packages    lang/golang/golang
+merge_package main https://github.com/wvvwcom/openwrt-package-frpc    package/feeds/packages    net/frp
+merge_package main https://github.com/wvvwcom/openwrt-package-frpc    package/feeds/luci        applications/luci-app-frpc
 
-# 非替换的包，需要直接拷贝到package目录，不然无法安装
 merge_package main https://github.com/Lienol/openwrt-package          package/feeds/luci   luci-app-timecontrol
 merge_package main https://github.com/Lienol/openwrt-package          package/feeds/luci   luci-app-socat
 
