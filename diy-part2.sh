@@ -54,7 +54,6 @@ merge_package master https://github.com/coolsnowwolf/packages         feeds/pack
 merge_package main https://github.com/wvvwcom/openwrt-package-frpc    package/feeds/packages    net/frp
 merge_package main https://github.com/wvvwcom/openwrt-package-frpc    package/feeds/luci        applications/luci-app-frpc
 
-# 非替换的包，需要直接拷贝到package目录，不然无法安装
 merge_package main https://github.com/Lienol/openwrt-package          package/feeds/luci   luci-app-timecontrol
 merge_package main https://github.com/Lienol/openwrt-package          package/feeds/luci   luci-app-socat
 
@@ -65,8 +64,6 @@ git clone https://github.com/ilxp/luci-app-ikoolproxy.git package/feeds/luci/luc
 
 # 替换默认主题为luci-theme-argon
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-light/Makefile
-
-
 
 # 安装新主题 luci-theme-bootstrap-mod
 # git clone https://github.com/leshanydy2022/luci-theme-bootstrap-mod.git package/lean/luci-theme-bootstrap-mod
