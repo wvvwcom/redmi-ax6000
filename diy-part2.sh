@@ -62,6 +62,11 @@ rm -rf package/feeds/luci/luci-app-ikoolproxy
 git clone https://github.com/ilxp/luci-app-ikoolproxy.git package/feeds/luci/luci-app-ikoolproxy
 
 
+# 替换默认主题为luci-theme-argon
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-light/Makefile
+
+
+
 # 安装新主题 luci-theme-bootstrap-mod
 # git clone https://github.com/leshanydy2022/luci-theme-bootstrap-mod.git package/lean/luci-theme-bootstrap-mod
 # sed -i 's/luci-theme-bootstrap/luci-theme-bootstrap-mod/g' feeds/luci/collections/luci/Makefile
