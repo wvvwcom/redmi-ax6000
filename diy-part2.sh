@@ -58,6 +58,10 @@ merge_package main https://github.com/wvvwcom/openwrt-package-frpc    feeds/luci
 merge_package main https://github.com/Lienol/openwrt-package          package/feeds/luci   luci-app-timecontrol
 merge_package main https://github.com/Lienol/openwrt-package          package/feeds/luci   luci-app-socat
 
+# EasyTier
+merge_package main https://github.com/EasyTier/luci-app-easytier.git  package/feeds/packages    easytier
+merge_package main https://github.com/EasyTier/luci-app-easytier.git  package/feeds/luci        luci-app-easytier
+
 # ilxp/luci-app-ikoolproxy
 rm -rf package/feeds/luci/luci-app-ikoolproxy
 git clone https://github.com/ilxp/luci-app-ikoolproxy.git package/feeds/luci/luci-app-ikoolproxy
