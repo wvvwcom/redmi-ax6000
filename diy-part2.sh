@@ -54,16 +54,16 @@ merge_package master https://github.com/coolsnowwolf/packages         feeds/pack
 merge_package main https://github.com/wvvwcom/openwrt-package-frpc    feeds/packages/net        net/frp
 merge_package main https://github.com/wvvwcom/openwrt-package-frpc    feeds/luci/applications   applications/luci-app-frpc
 
-# 中文包的命名ImmortalWrt和Lede不一样，修改适配
-mv feeds/luci/applications/luci-app-frpc/po/zh-cn feeds/luci/applications/luci-app-frpc/po/zh_Hans
-
 # 非替换的包，需要直接拷贝到package目录，不然无法安装
 merge_package main https://github.com/Lienol/openwrt-package          package/feeds/luci   luci-app-timecontrol
 merge_package main https://github.com/Lienol/openwrt-package          package/feeds/luci   luci-app-socat
-
 # EasyTier
 merge_package main https://github.com/EasyTier/luci-app-easytier.git  package/feeds/packages    easytier
 merge_package main https://github.com/EasyTier/luci-app-easytier.git  package/feeds/luci        luci-app-easytier
+# Lucky
+merge_package main https://github.com/gdy666/luci-app-lucky           package/feeds/packages    lucky
+merge_package main https://github.com/gdy666/luci-app-lucky           package/feeds/luci        luci-app-lucky
+
 
 # ilxp/luci-app-ikoolproxy
 rm -rf package/feeds/luci/luci-app-ikoolproxy
